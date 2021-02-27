@@ -6,11 +6,133 @@
 
 -
 
-QUIZ 1: Database Terminology -
+### 2. What is PostgreSQL All About?
+
+- Challenges of Postgres: <br>
+  1. Writing efficient queries to retrieve information
+  2. Designing the schema, or structure, of the database
+  3. Understanding when to use advanced features
+  4. Managing the database in a production environment
+- #1 is probably the most important thing we need to know how to do.
+- #2 can be hard to decide what approach is best and concerns to take into consideration
+- #3 Postgres has a lot of special features, sometimes helpful sometimes not
+- #4 Scaling the database is important and there are many techniques behind this
+
+### 3. Database Design
+
+- Database Design Process: <br>
+
+  1. What kind of thing are we storing?
+  2. What properties does this thing have?
+  3. What type of data does each of those properties contain?
+
+  - #1 We should create a table called 'cities'
+  - #2 The table should have columns of name, country, population, area
+  - #3 Each column should indicate the type of data that it is going to store
+
+- QUIZ 1: Database Terminology <br>
+  1. A table stores a list of records, like a list of to do items, a list of photos, or a list of cities
+
+### 4. Creating Tables
+
+- pg-sql.com: Tool to get a free Postgres database + run some queries
+-       CREATE TABLE cities (
+        name VARCHAR(50),
+        country VARCHAR(50),
+        population INTEGER,
+        area INTEGER
+        );
+
+### 5. Analzing CREATE TABLE
+
+- Identifier - lowercase; Keyword - CAPITAL
+- Column Data Types: <br>
+  1. VARCHAR(50) - Variable length character. Text! If we put in a string longer than 50 charaters, we'll get an error
+  2. INTEGER - Number without a decimal. +/- 2,147,483,647. Anything larger or smaller = error!
+
+### 6. Inserting Data Into a Table
+
+-       INSERT INTO cities (name, country, population, area)
+        VALUES ('Tokyo', 'Japan', 28505000, 8223);
+- You can insert multiple rows at once
+-       INSERT INTO cities (name, country, population, area)
+        VALUES
+        ('Delhi', 'India', 28125000, 2240),
+        ('Shanghai', 'China', 22125000, 4015),
+        ('Sao Paulo', 'Brazil', 20935000, 3043);
+
+### 7. Retrieving Data with Select
+
+-       SELECT * FROM cities;
+
+### Coding Exercise 1.: Create, Insert, and Select!
+
+-       CREATE TABLE movies (
+            title VARCHAR(60),
+            box_office INTEGER
+        );
+-       INSERT INTO movies (title, box_office)
+        VALUES
+            ('The Avengers', 1500000000),
+            ('Batman v Superman', 873000000);
+-       SELECT * FROM movies
+
+### 8. Calculated Columns
+
+- SQL is not just about pulling raw data out of a table
+- We can write SQL to _transform_ or _process_ data before we recieve it!
+- Math Operators: <br>
+  1.                        |/ - Square Root
+          @ Absolute Value
+          % Remainder
+          ^ Exponent
+-       SELECT name, population / area AS               population_density
+        FROM cities;
+
+### 9. Calculating Phone Revenue
+
+-       CREATE TABLE phones (
+            name VARCHAR(50),
+            manufacturer VARCHAR(50),
+            price INTEGER,
+            units_sold INTEGER,
+        );
+
+-       INSERT INTO phones (name, manufacturer, price, units_sold)
+        VALUES
+            ('N8', 'Nokia', 150, 7543),
+            ('Droid', 'Motorola', 150, 8395),
+            ('Wave S8500', 'Samsung', 175, 9259);
+
+- Coding Exercies 2: Using Calculated Columns <br>
+
+1.                     SELECT name, price * units_sold AS revenue
+            FROM phones;
+
+### 10. Exercise Solution
+
+- COMPLETE
 
 ### 11. String Operators and Functions
 
--
+- || -> Join two string (string operator)
+- Functions:
+  1. CONCAT() -> Join two strings
+  2. LOWER() -> Gives a lower case string
+  3. UPPER() -> Gives a upper case string
+  4. LENGTH() -> Gives number of characters in a string
+-       SELECT name || ', ' || country AS location
+        FROM cities;
+-       SELECT CONCAT(name, ', ', country) AS location
+        FROM cities;
+-       SELECT
+        CONCAT(UPPER(name), ', ', UPPER(country)) AS location
+        FROM
+        cities;
+-       SELECT
+            UPPER(CONCAT(name, ', ', country)) AS location
+        FROM
+            cities;
 
 ## Section 2: Filtering Records 30min
 
