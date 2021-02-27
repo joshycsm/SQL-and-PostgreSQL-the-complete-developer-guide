@@ -43,7 +43,7 @@
         area INTEGER
         );
 
-### 5. Analzing CREATE TABLE
+### 5. Analyzing CREATE TABLE
 
 - Identifier - lowercase; Keyword - CAPITAL
 - Column Data Types: <br>
@@ -82,7 +82,7 @@
 - SQL is not just about pulling raw data out of a table
 - We can write SQL to _transform_ or _process_ data before we recieve it!
 - Math Operators: <br>
-  1.                        |/ - Square Root
+  -       |/ - Square Root
           @ Absolute Value
           % Remainder
           ^ Exponent
@@ -106,8 +106,8 @@
 
 - Coding Exercies 2: Using Calculated Columns <br>
 
-1.                     SELECT name, price * units_sold AS revenue
-            FROM phones;
+-     SELECT name, price \* units_sold AS revenue
+        FROM phones;
 
 ### 10. Exercise Solution
 
@@ -138,11 +138,146 @@
 
 ### 12. Filtering Rows with "Where"
 
--
+-       SELECT name, area
+        FROM cities
+        WHERE area > 4000
+- First thing that really happens internally is Postgres takes a look at the data source and sees you're trying to pull in all the different rows from the cities table. It then filters to apply the where criteria to remove some rows out of the result set. and then for all the remaining entries, it will select some number of columns.
+- FROM first, WHERE second, SELECT third
+
+### 13. More on the "Where" Keyword
+
+- WHERE: allows us to filter down the results we get from our query
+- Comparison Math Operators: <br>
+  1. IN - Is the value present in a list?
+  2. BETWEEN - Is the value between two other values?
+  3. NOT IN - Is the value _not_ present in a list
+-       SELECT
+            name,
+            area
+        FROM
+            cities
+        WHERE
+            area = 8223;
+
+### 14. Compound "Where" Clauses
+
+-       SELECT
+            name,
+            area
+        FROM
+            cities
+        WHERE
+            area BETWEEN 2000 AND 4000;
+-       SELECT
+            name,
+            area
+        FROM
+            cities
+        WHERE
+            name IN('Delhi', 'Shanghai');
+-       SELECT
+            name,
+            area
+        FROM
+            cities
+        WHERE
+            area NOT IN(3043, 8223);
+-       SELECT
+            name,
+            area
+        FROM
+            cities
+        WHERE
+            area NOT IN(3043, 8223) AND name = 'Delhi';
+-       SELECT
+            name,
+            area
+        FROM
+            cities
+        WHERE
+            area NOT IN(3043, 8223)
+            OR name = 'Delhi'
+            OR name = 'Tokyo';
+
+### 15. A "Where" Exercise Overview
+
+- complete.
+
+- Coding Exercise 3: Practicing Where Statements (complete)
+
+### 16. A "Where" Solution
+
+-       SELECT name, price
+        FROM phones
+        WHERE units_sold > 5000
+
+### 17. "Where" With Lists
+
+- complete
+
+- Coding Exercise 4: A More Challenging 'Where' (complete)
+
+### 18. A "Where" With Lists Solution
+
+-       SELECT name, manufacturer
+        FROM phones
+        WHERE manufacturer IN ('Apple', 'Samsumg')
+
+### 19. Calculations in "Where" Clauses
+
+- mathematical operations will run before tesing for inequality
+-       SELECT
+            name,
+            population / area AS population_density
+        FROM
+          cities
+        WHERE
+          population / area > 6000
+
+- Coding Exercise 5: Trying Calcluations in Where Clauses (complete)
+
+### 20. Solving Calculations
+
+-       SELECT
+            name,
+            price * unit sold AS total_revenue
+        FROM
+            phones
+        WHERE
+            price * unit sold > 1000000;
+
+### 21. Updating Rows
+
+-       UPDATE cities
+        SET population = 39505000
+        WHERE name = 'Tokyo' AND country = 'Japan'
+-       SELECT * FROM cities
+- be cautious when writing WHERE statements. we will come up with fool proof plan for updating statements soon.
+
+### 22. Deleting Rows
+
+-       DELETE FROM cities
+        WHERE name = 'Tokyo' AND country = 'Japan'
+-       INSERT INTO cities (name, country, population, area)
+        VALUES ('Tokyo', 'Japan', 38505000, 8223)
+-       SELECT * FROM cities
+
+- Coding Exercise 6: Try Updating Records In a Table! (complete)
+
+### 23. A Solution for Updating Rows
+
+-       UPDATE phones
+        SET units_sold = 8543
+        WHERE name = 'N8';
+-       SELECT * FROM phones;
+
+- Coding Exercise 7: Practice Deleting Records (complete)
 
 ### 24. Solution for Deleting Rows
 
--
+-       DELETE FROM phones
+        WHERE manufacturer = 'Samsung';
+-       SELECT * FROM phones;
 
 ## Section 3: Working with Tables 1hr 18min
 
