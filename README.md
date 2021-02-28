@@ -283,21 +283,263 @@
 
 ### 25. The Plan Moving Forward
 
--
+- One table per database is rare.
+- Database For a Photo-Sharing App: users, photos, comments, likes.
 
-QUIZ 2: Let's Design Some Schema -
+### 26. Approaching Database Design
 
-QUIZ 3: A 'Has One' or 'Has Many'? -
+- What Tables Should We Make? <br>
+  1. Common features (like authentication, comments, etc) are frequently built with conventional table names and columns
+  2. What type of resources exist in your app? Create a separate table for each of these features
+  3. Features that seem to indicate a _relationship or ownership_ between two types of resources need to be reflected in our table design
 
-QUIZ 4: Identifying One-to-One and Many-to-Many Relationships -
+QUIZ 2: Let's Design Some Schema - complete
 
-QUIZ 5: Foreign Keys: How Do They Work? -
+### 27. One-to-Many and Many-to-Many Relationships
 
-QUIZ 6: What Happens On Delete? -
+- First 2 Kinds of Relationships <br>
+  1. One-to-Many Relationship: A user has many photos (i.e. 'has many' represents a 1:m)
+  2. Many-to-One Relationship: A photo has one user (i.e. 'has one' represnets a m:1)
+- A photo has many comments
+- A comment has one photo.
+- a Boat has many crew members, a school has many students, a company has many employees
+- A crew member has one boat, a student belongs to one school, a employee has one company
+- How to relate different records in our database with a 1:m or m:1? We will learn this next.
+
+QUIZ 3: A 'Has One' or 'Has Many'? - complete
+
+### 28. One-to-Many and Many-to-Many Relationships
+
+- Database containing users, photos, comments, and likes only contains one-to-many and many-to-one relationships
+
+- Two other important relationships, many-to-one and one-to-one.
+
+- One-To-One Relationships:
+
+  - definition: Exactly one record that has a relationship to exactly one another record. Opposite is true for the other record.
+
+  1. Examples: Boats Captains; Company CEO; Capitol Country; Student Desk; Person Driver's License
+
+- Many-To-Many Relationships:
+
+  1. Students Classes; Tasks Engineers; Players Football Matches; Movies Actors / Actresses; Conference Calls Employees (time-based)
+
+QUIZ 4: Identifying One-to-One and Many-to-Many Relationships - complete
+
+### 29. Primary and Foreign Keys
+
+- How to set up some kind of relationship in a table?
+- Primary Key - Uniquely identifes this record in this table; identify an indivdual row inside a table
+- Foreign Key - Identifies a record (usually in another table) that this row is associated with; foreign used to relate one record with another and set up a relationship
+- With photos and users table we can set up a one to many and many to one relationship by inserting a foreign key in the table that belongs to the other table.
+
+### 30. Understanding Foreign Keys
+
+- **Comments have one photo**
+- Comments table should get a foreign key column **pointing at the photo** each comment belongs to
+- **Comments have one user**
+- Comments table should get a foreign key column **pointing at the user** each comment belongs to
+
+- **The 'many side of the relationship gets the foreign key column**
+- comments table gets the foreign key column pointing at 'photo'
+- comments table gets the foreign key column pointing at 'user'
+- foreign key columns will set up all the different relationships we have. It's the only way so have to understand how it works!!! very mechanical process so just learn it correctly one time and makes sense forever.
+- Primary Keys:
+  1. Each row in every table has one primary key
+  2. No other row in the _same table_ can have the same value
+  3. 99% of the time called 'id'
+  4. Either an integer or a UUID (Universaly Unique ID)
+  5. Will never change
+- Foreign Keys:
+  1. Rows only have this if they _belong to_ another record
+  2. Many rows in the same table can have the same foreign key
+  3. Name varies, usually called something like 'xyz_id'
+  4. Exactly equal to the primary key of the referenced row
+  5. Will change if the relationship changes.
+
+QUIZ 5: Foreign Keys: How Do They Work? - complete
+
+### 31. Auto-Generated ID's
+
+- Generate a table of users
+- users table needs username column
+- helper from postgres, SERIAL datatype ()
+- as we add users ids will be generated with the next available unique interger
+-       CREATE TABLE users(
+            id SERIAL PRIMARY KEY,
+            username VARCHAR(50)
+        );
+-       INSERT INTO users (username)
+        VALUES
+            ('monahan93'),
+            ('pferrer'),
+            ('si93onis'),
+            ('99stroman');
+-       SELECT * FROM users
+-       CREATE TABLE photos (
+            id SERIAL PRIMARY KEY,
+            url VARCHAR(200),
+            user_id INTEGER REFERENCES users(id)
+        );
+-       INSERT INTO photos (url, user_id)
+        VALUES
+          ('http://one.jpg', 4);
+-       SELECT * FROM photos;
+
+### 32. Creating Foreign Key Columns
+
+- included in 31.
+
+### 33. Running Queries on Associated Data
+
+-       INSERT INTO photos (url, user_id)
+        VALUES
+            ('http://two.jpg', 1),
+            ('http://25.jpg', 1),
+            ('http://36.jpg', 1),
+            ('http://754.jpg', 2),
+            ('http://35.jpg', 3),
+            ('http://256.jpg', 4);
+-       SELECT * FROM photos
+- Find all the photos created by user with ID 4
+-       SELECT * FROM photos
+        WHERE user_id = 4;
+- List all photos with details about the associated user for each
+-       SELECT url, username FROM photos
+        JOIN users ON users.id = photos.user_id
+- This is a join. We will go into great detail on it shortly!
+
+### 34. Exercise Overview
+
+- Relate the crew members and boats
+- write a query to fetch all the crew members associated with the boat that has an ID of 1
+- in certain SQL instances:
+-       id INTEGER PRIMARY KEY AUTOINCREMENT
+  VS
+-       id SERIAL PRIMARY KEY
+
+- Coding Exercise 8: Creating and Using Foreign Keys (complete)
+
+### 35. Foreign Key Creation Solution
+
+- SQL code:
+  - Create table called 'boats'
+-       CREATE TABLE boats (
+            -- Note that this environment doesn't support 'SERIAL' keyowrd
+            -- so 'AUTOINCREMENT' is used instead. Postgres always uses 'SERIAL'
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name VARCHAR
+        );
+
+  - Insert two boats
+
+-       INSERT INTO boats (name)
+        VALUES ('Rogue Wave'), ('Harbor Master');
+
+  - Create table called 'crew members'
+
+-       CREATE TABLE crew_members (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            first_name VARCHAR,
+            -- todo #1 below
+            boat_id INTEGER REFERENCES boats(id)
+        );
+
+  - Insert three crew members
+
+-       INSERT INTO crew_members(first_name, boat_id)
+        VALUES ('Alex', 1), ('Lucia', 1), ('Ari', 2);
+
+  - Write query here to fetch all columns for all crew_members associated with the boat that has an ID of 1
+  - TODO #2 BELOW
+
+-       SELECT * FROM crew_members
+        <!-- JOIN boats ON boats.id = crew_members.boat_id -->
+        WHERE boat_id = 1
+
+### 36. Foreign Key Constraints Around Insertion
+
+- DATA CONSISTENT: ability of our database to make sure the info we are inserting into it and working with makes sense and all different references between tables line up in some way
+- 3 scenarios:
+  1. We insert a photo that is tied to a user that exists -> Everthing works OK!
+  2. We insert a photo that refers to a user that doesn't exist -> An error! (violates foreign key constraint because it does not exist right now)
+  3. We insert a photo that isn't tied to any user -> Put in a value of 'NULL' for the user_id
+
+### 37. Constraints Around Deletion
+
+- When we use a foreign key we can specify some options if we delete a primary key that is referenced in another table: (What happens if you try to delete a user when a photo is still referencing it... on delete options below)
+  1. ON DELETE RESTRICT -> Throw an error (violates foreign key constraint)
+  2. ON DELETE NO ACTION -> Throw an error
+  3. ON DELETE CASCADE -> Delete the photo too!
+  4. ON DELETE SET NULL -> Set the 'user_id' of the photo to 'NULL'
+  5. ON DELETE SET DEFAULT -> Set the 'user_id' of the photo to a default value, if one is provided
+
+### 38. Commands You'll Need for the Next Video
+
+- The next video will involve creating and deleting the photos table several times.
+
+- To avoid having to retype out the CREATE TABLE and INSERT INTO several times, here are the commands that we are going to run a few times. You should copy-paste these somewhere for just a moment - we will run them several times in the next video.
+
+CREATE TABLE photos (
+id SERIAL PRIMARY KEY,
+url VARCHAR(200),
+user_id INTEGER REFERENCES users(id)
+);
+
+INSERT INTO photos (url, user_id)
+VALUES
+('http:/one.jpg', 4),
+('http:/two.jpg', 1),
+('http:/25.jpg', 1),
+('http:/36.jpg', 1),
+('http:/754.jpg', 2),
+('http:/35.jpg', 3),
+('http:/256.jpg', 4);
+
+### 39. Testing Deletion Constraints
+
+- testing different constraints:
+  1.  ON DELETE CASCADE
+      -       DROP TABLE photos
+      -       SELECT * FROM photos
+      - create photos table again with ON DELETE CASCASDE and run below:
+  -       DELETE FROM users
+          WHERE id = 1
+  -       SELECT * FROM photos
+
+### 40. Setting Foreign Keys to Null on Delete
+
+- testing different constraints:
+
+  1.  ON DELETE SET NULL
+      -       DROP TABLE photos
+      -       SELECT * FROM photos
+      - create photos table again and run below:
+      -         CREATE TABLE photos (
+                    id SERIAL PRIMARY KEY,
+                    url VARCHAR(200),
+                    user_id INTEGER REFERENCES users(id) ON DELETE SET NULL
+                );
+      -          INSERT INTO photos (url, user_id)
+                VALUES
+                    ('http:/one.jpg', 4),
+                    ('http:/754.jpg', 2),
+                    ('http:/35.jpg', 3),
+                    ('http:/256.jpg', 4);
+
+  -       DELETE FROM users
+    WHERE id = 4
+  -       SELECT * FROM photos
+
+QUIZ 6: What Happens On Delete? - complete
 
 ### 41. Adding Some Complexity
 
--
+- We've seen how to set up relationships between different tables
+- We've seen some simple queries
+- We've seen how to clean up these relationships
+- Lets' add in 'comments' then figure out how to write a few super common queries
+- Schema diagram: photos has id (serial), url (varchar(200)), user_id (integer); users has id (serial), username (varchar(40)); comments has id (serial), photo_id (integer), user_id (integer), contents (varchar(240))
 
 ## Section 4: Relating Records with Joins 1hr 20min
 
@@ -305,7 +547,77 @@ QUIZ 6: What Happens On Delete? -
 
 -
 
+### 43. Queries with Joins and Aggregrations
+
+-
+
+### 44. Joing Data from Different Tables
+
+-
+
+### 45. Another Quick Join
+
+-
+
+### 46. Exercise Overview
+
+-
+
+- Coding Exercise 9: Practice Joining Data (complete)
+
+### 47. A Joinful Solution
+
+-
+
+### 48. Alternate Forms of Syntax
+
+-
+
+### 49. Missing Data in Joins
+
+-
+
+### 50. Why Wasn't It Included
+
+-
+
+### 51. Four Kinds of Joins
+
+-
+
+### 52. Each Join in Practice
+
+-
+
+### 53. Does Order Matter?
+
+-
+
 QUIZ 7: Test your Joining Knowledge
+
+### 54. Exercise Overview
+
+-
+
+- Coding Exercise 10: Joins, Joins, Join! (complete)
+
+### 55. Two Possible Solutions
+
+-
+
+### 56. Where with Join
+
+-
+
+### 57. Three Way Joins
+
+-
+
+### 58. A Bit of Practice
+
+-
+
+- Coding Exercise 11: Three Way Exercise (complete)
 
 ### 59. Exercise Solution
 
@@ -317,7 +629,75 @@ QUIZ 7: Test your Joining Knowledge
 
 -
 
+### 60. Aggregrating and Grouping
+
+-
+
 QUIZ 8: Selecting Columns After Grouping
+
+### 60. Aggregrating and Grouping
+
+-
+
+### 61. Picturing Group By
+
+-
+
+- Quiz 8: Selecting Columns After Grouping
+
+### 62. Aggregate Functions
+
+-
+
+### 63. Combining Groups By and Aggregates
+
+-
+
+### 64. A Gotcha With Count
+
+-
+
+### 65. Visualizing More Grouping
+
+-
+
+### 66. Exercise Overview
+
+-
+
+- Coding Exercise 12: Practice For Grouping and Aggregating (complete)
+
+### 67. Grouping Solution
+
+-
+
+### 68. Adding a Layer of Difficulty
+
+-
+
+- Coding Exercise 13: Grouping With a Join!
+
+### 69. Solution
+
+-
+
+### 70. Filtering Groups with Having
+
+-
+
+### 71. Having in Action
+
+-
+
+### 72. More on Having!
+
+-
+
+### 73. A Having Exercise Overview
+
+-
+
+- Coding Exercise 14: Practice Yourself Some Having (complete)
 
 ### 74. A Quick Solution
 
