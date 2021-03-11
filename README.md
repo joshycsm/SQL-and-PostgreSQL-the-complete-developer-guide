@@ -8,7 +8,7 @@
 <tr>
 <td>
 
-<!-- [Section 1: Simple - But Powerful - SQL Statements](##section-1-Simple---But-Powerful---SQL-Statements)
+[Section 1: Simple - But Powerful - SQL Statements](##section-1-Simple---But-Powerful---SQL-Statements)
 
 [Section 2: Filtering Records](##section-2-Filtering-Records)
 
@@ -32,12 +32,9 @@
 
 [Section 12: Local PostgreSQL Installation](##section-12-Local-PostgreSQL-Installation)
 
-[Section 13: PostgreSQL Complex Datatypes](##section-13-PostgreSQL-Complex-Datatypes) -->
+[Section 13: PostgreSQL Complex Datatypes](##section-13-PostgreSQL-Complex-Datatypes)
 
-</td>
-<td>
-
-<!-- [Section 14: Database-Side Validation and Constraints](##section-14-Database-Side-Validation-and-Constraints)
+[Section 14: Database-Side Validation and Constraints](##section-14-Database-Side-Validation-and-Constraints)
 
 [Section 15: Database Structure Design Patterns](##section-15-Database-Structure-Design-Patterns)
 
@@ -46,6 +43,9 @@
 [Section 17: How to Build a 'Mention' System](##section-17-How-to-Build-a-Mention-System)
 
 [Section 18: How to Build a 'Hashtag' System](##section-18-How-to-Build-a-Hashtag-System)
+
+</td>
+<td>
 
 [Section 19: How to Design a 'Follower' System](##section-19-How-to-Design-a-Follower-System)
 
@@ -59,19 +59,30 @@
 
 [Section 24: Basic Query Tuning](##section-24-Basic-Query-Tuning)
 
-[Section 25: Advanced Query Tuning](##section-25-Advanced-Query-Tuning) -->
+[Section 25: Advanced Query Tuning](##section-25-Advanced-Query-Tuning)
 
 [Section 26: Simple Common Table Expressions](##section-26-Simple-Common-Table-Expressions)
+
 [Section 27: Recursive Common Table Expressions](##section-27-Recursive-Common-Table-Expressions)
+
 [Section 28: Simplifying Queries with Views](##section-28-Simplifying-Queries-with-Views)
+
 [Section 29: Optimizing Queries with Materialized Views](##section-29-Optimizing-Queries-with-Materialized-Views)
-[Section 30: Handling Concurrency and Reversibility with Transactions](##section-30-Handling Concurrency and Reversibility with Transactions)
+
+[Section 30: Handling Concurrency and Reversibility with Transactions](##section-30-Handling-Concurrency-and-Reversibility-with-Transactions)
+
 [Section 31: Managing Database Design with Schema Migrations](##section-31-Managing-Database-Design-with-Schema-Migrations)
+
 [Section 32: Schema vs Data](##section-32-Schema-vs-Data)
+
 [Section 33: Accessing PostgreSQL From API's](##section-33-Accessing-PostgreSQL-From-APIs)
+
 [Section 34: Data Access Pattern - Repositories](##section-34-Data-Access-Pattern---Repositories)
+
 [Section 35: Security Around PostgreSQL](##section-35-Security-Around-PostgreSQL)
+
 [Section 36: Fast Parallel Testing](##section-36-Fast-Parallel-Testing)
+
 [Section 37: Bonus!](##section-37-Bonus!)
 
 </td>
