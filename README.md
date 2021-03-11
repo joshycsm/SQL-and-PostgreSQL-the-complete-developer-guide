@@ -1,6 +1,88 @@
 # SQL-and-PostgreSQL-the-complete-developer-guide
 
-## Section 1: Simple - But Powerful - SQL Statementsmin
+<table>
+<tr>
+<th id="table-of-contents"> Table of Contents </th>
+<th> Table of Contents (cont'd) </th>
+</tr>
+<tr>
+<td>
+
+<!-- [Section 1: Simple - But Powerful - SQL Statements](##section-1-Simple---But-Powerful---SQL-Statements)
+
+[Section 2: Filtering Records](##section-2-Filtering-Records)
+
+[Section 3: Working with Tables](##section-3-Working-with-Tables)
+
+[Section 4: Relating Records with Joins](##section-4-Relating-Records-with-Joins)
+
+[Section 5: Aggregation of Records](##section-5-Aggregation-of-Records)
+
+[Section 6: Working with Large Datasets](##section-6-Working-with-Large-Datasets)
+
+[Section 7: Sorting Records](##section-7-Sorting-Records)
+
+[Section 8: Unions and Intersections with Sets](##section-8-Unions-and-Intersections-with-Sets)
+
+[Section 9: Assembling Queries with SubQueries](##section-9-Assembling-Queries-with-SubQueries)
+
+[Section 10: Selecting Distinct Records](##section-10-Selecting-Distinct-Records)
+
+[Section 11: Utility Operators, Keywords, and Functions](##section-11-Utility-Operators-Keywords-and-Functions)
+
+[Section 12: Local PostgreSQL Installation](##section-12-Local-PostgreSQL-Installation)
+
+[Section 13: PostgreSQL Complex Datatypes](##section-13-PostgreSQL-Complex-Datatypes) -->
+
+</td>
+<td>
+
+<!-- [Section 14: Database-Side Validation and Constraints](##section-14-Database-Side-Validation-and-Constraints)
+
+[Section 15: Database Structure Design Patterns](##section-15-Database-Structure-Design-Patterns)
+
+[Section 16: How to Build a 'Like' System](##section-16-How-to-Build-a-Like-System)
+
+[Section 17: How to Build a 'Mention' System](##section-17-How-to-Build-a-Mention-System)
+
+[Section 18: How to Build a 'Hashtag' System](##section-18-How-to-Build-a-Hashtag-System)
+
+[Section 19: How to Design a 'Follower' System](##section-19-How-to-Design-a-Follower-System)
+
+[Section 20: Implementing Database Design Patterns](##section-20-Implementing-Database-Design-Patterns)
+
+[Section 21: Approaching and Writing Complex Queries](##section-21-Approaching-and-Writing-Complex-Queries)
+
+[Section 22: Understanding the Internals of PostgreSQL](##section-22-Understanding-the-Internals-of-PostgreSQL)
+
+[Section 23: A Look at Indexes for Performance](##section-23-A-Look-at-Indexes-for-Performance)
+
+[Section 24: Basic Query Tuning](##section-24-Basic-Query-Tuning)
+
+[Section 25: Advanced Query Tuning](##section-25-Advanced-Query-Tuning) -->
+
+[Section 26: Simple Common Table Expressions](##section-26-Simple-Common-Table-Expressions)
+[Section 27: Recursive Common Table Expressions](##section-27-Recursive-Common-Table-Expressions)
+[Section 28: Simplifying Queries with Views](##section-28-Simplifying-Queries-with-Views)
+[Section 29: Optimizing Queries with Materialized Views](##section-29-Optimizing-Queries-with-Materialized-Views)
+[Section 30: Handling Concurrency and Reversibility with Transactions](##section-30-Handling Concurrency and Reversibility with Transactions)
+[Section 31: Managing Database Design with Schema Migrations](##section-31-Managing-Database-Design-with-Schema-Migrations)
+[Section 32: Schema vs Data](##section-32-Schema-vs-Data)
+[Section 33: Accessing PostgreSQL From API's](##section-33-Accessing-PostgreSQL-From-APIs)
+[Section 34: Data Access Pattern - Repositories](##section-34-Data-Access-Pattern---Repositories)
+[Section 35: Security Around PostgreSQL](##section-35-Security-Around-PostgreSQL)
+[Section 36: Fast Parallel Testing](##section-36-Fast-Parallel-Testing)
+[Section 37: Bonus!](##section-37-Bonus!)
+
+</td>
+</tr>
+</table>
+
+## Section 1: Simple - But Powerful - SQL Statements
+
+## 38min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 1. Join Our Community!
 
@@ -134,7 +216,11 @@
         FROM
             cities;
 
-## Section 2: Filtering Records 30min
+## Section 2: Filtering Records
+
+## 30min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 12. Filtering Rows with "Where"
 
@@ -279,7 +365,11 @@
         WHERE manufacturer = 'Samsung';
 -       SELECT * FROM phones;
 
-## Section 3: Working with Tables 1hr 18min
+## Section 3: Working with Tables
+
+## 1hr 18min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 25. The Plan Moving Forward
 
@@ -541,7 +631,11 @@ QUIZ 6: What Happens On Delete? - complete
 - Lets' add in 'comments' then figure out how to write a few super common queries
 - Schema diagram: photos has id (serial), url (varchar(200)), user_id (integer); users has id (serial), username (varchar(40)); comments has id (serial), photo_id (integer), user_id (integer), contents (varchar(240))
 
-## Section 4: Relating Records with Joins 1hr 20min
+## Section 4: Relating Records with Joins
+
+## 1hr 20min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 42. Adding Some Data
 
@@ -845,7 +939,7 @@ QUIZ 7: Test your Joining Knowledge (complete)
 
 ### 58. A Bit of Practice
 
-SELECT title, name
+SELECT title, name, rating
 FROM reviews
 JOIN books ON books.id = reviews.book_id
 JOIN authors ON authors.id = reviews.reviewer_id AND authors.id = books.author_id
@@ -854,9 +948,16 @@ JOIN authors ON authors.id = reviews.reviewer_id AND authors.id = books.author_i
 
 ### 59. Exercise Solution
 
--
+-       SELECT title, name, rating
+        FROM reviews
+        JOIN books ON books.id = reviews.book_id
+        JOIN authors ON authors.id = reviews.reviewer_id AND authors.id = books.author_id
 
-## Section 5: Aggregation of Records 46min
+## Section 5: Aggregation of Records
+
+## 46min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 60. Aggregrating and Grouping
 
@@ -936,7 +1037,11 @@ QUIZ 8: Selecting Columns After Grouping
 
 -
 
-## Section 6: Working With Large Datasets 20min
+## Section 6: Working With Large Datasets
+
+## 20min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 75. A New Dataset
 
@@ -946,7 +1051,11 @@ QUIZ 8: Selecting Columns After Grouping
 
 -
 
-## Section 7: Sorting Records 13min
+## Section 7: Sorting Records
+
+## 13min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 81. The Basics of Sorting
 
@@ -956,7 +1065,11 @@ QUIZ 8: Selecting Columns After Grouping
 
 -
 
-## Section 8: Unions and Intersections with Sets 22min
+## Section 8: Unions and Intersections with Sets
+
+## 22min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 86. Handling Sets with Union
 
@@ -966,7 +1079,11 @@ QUIZ 8: Selecting Columns After Grouping
 
 -
 
-## Section 9: Assembling Queries with SubQueries 1hr 52min
+## Section 9: Assembling Queries with SubQueries
+
+## 1hr 52min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 92. What's a Subquery?
 
@@ -980,7 +1097,11 @@ Quiz 10: Is It A VAlid Subquery? -
 
 -
 
-## Section 10: Selecting Distinct Records 5min
+## Section 10: Selecting Distinct Records
+
+## 5min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 117. Selecting Distinct Values
 
@@ -996,7 +1117,11 @@ Coding Exercise 24: Some Practice with Distinct
 
 -
 
-## Section 11: Utility Operators, Keywords, and Functions 10min
+## Section 11: Utility Operators, Keywords, and Functions
+
+## 10min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 120. The Greatest Value in a List
 
@@ -1010,7 +1135,11 @@ Coding Exercise 24: Some Practice with Distinct
 
 -
 
-## Section 12: Local PostgreSQL Installation 15min
+## Section 12: Local PostgreSQL Installation
+
+## 15min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 123. PostgreSQL Installion on MacOS
 
@@ -1024,7 +1153,11 @@ Coding Exercise 24: Some Practice with Distinct
 
 -
 
-## Section 13 PostgreSQL Complex Datatypes 38min
+## Section 13 PostgreSQL Complex Datatypes
+
+## 38min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 126. What'd We Just Do?
 
@@ -1034,7 +1167,11 @@ Coding Exercise 24: Some Practice with Distinct
 
 -
 
-## Section 14: Database-Side Validation and Constraints 49min
+## Section 14: Database-Side Validation and Constraints
+
+## 49min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 134. Thinking About Validation
 
@@ -1050,7 +1187,11 @@ QUIZ 13: Does It Pass a Check?
 
 -
 
-## Section 15: Database Structure Design Patterns 26min
+## Section 15: Database Structure Design Patterns
+
+## 26min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 144. Approaching More Complicated Designs
 
@@ -1060,7 +1201,11 @@ QUIZ 13: Does It Pass a Check?
 
 -
 
-## Section 16: How to Build a 'Like' System 35 min
+## Section 16: How to Build a 'Like' System
+
+## 35 min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 149. Requirements of a Like System
 
@@ -1074,7 +1219,11 @@ QUIZ 15: Polymorphic Associations -
 
 -
 
-## Section 17: How to Build a 'Mention' System 27min
+## Section 17: How to Build a 'Mention' System
+
+## 27min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 157. Additional Features Around Posts
 
@@ -1084,7 +1233,11 @@ QUIZ 15: Polymorphic Associations -
 
 -
 
-## Section 18: How to Build a 'Hashtag' System 25min
+## Section 18: How to Build a 'Hashtag' System
+
+## 25min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 162. Designing a Hashtag System
 
@@ -1104,7 +1257,11 @@ QUIZ 15: Polymorphic Associations -
 - Can be calculated by running a query on data that already exists in our DB
 - We call this 'derived data' We genearlly dont want to store derived data unless a very good performance benefit or writing query to calculate derived data is difficult but that calculation is usually very easy.
 
-## Section 19: How to Design a 'Follower' System 6min
+## Section 19: How to Design a 'Follower' System
+
+## 6min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 167. Designing a Follower System
 
@@ -1114,7 +1271,11 @@ QUIZ 15: Polymorphic Associations -
 - UNIQUE(leader_id, follower_id)
 - USE DBDIAGRAM.IO/d
 
-## Section 20 Implementing Database Design Patterns 44min
+## Section 20 Implementing Database Design Patterns
+
+## 44min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 168. Back to Postgres
 
@@ -1142,7 +1303,11 @@ QUIZ 15: Polymorphic Associations -
           UNIQUE(leader_id, follower_id)
   )
 
-## Section 21: Approaching and Writing Complex Queries 17min
+## Section 21: Approaching and Writing Complex Queries
+
+## 17min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 175. Quick Note About Adding Some Data
 
@@ -1157,7 +1322,11 @@ QUIZ 15: Polymorphic Associations -
         JOIN likes ON likes.user_id = user.id
         GROUP BY username
 
-## Section 22 Understanding the Internals of PostgreSQL 48min
+## Section 22 Understanding the Internals of PostgreSQL
+
+## 48min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 184. Thinking About Performance
 
@@ -1186,7 +1355,11 @@ QUIZ 16: Terminiology Check -
 
 - FREE TIME! DO NOT WATCH XD We are going to map out how PG stroes data at the binary level
 
-## Section 23: A Look at Indexes for Performance 1hr 6min
+## Section 23: A Look at Indexes for Performance
+
+## 1hr 6min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 189. Full Table Scans
 
@@ -1202,7 +1375,11 @@ QUIZ 17: `UNIQUE` keyword check on a specific column will create an index for th
 - very low level of how indexes are stored on your hd and how they are actually used by PG! FREE TIME!
 -
 
-## Section 24: Basic Query Tuning 19min
+## Section 24: Basic Query Tuning
+
+## 19min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 198. The Query Processing Pipeline
 
@@ -1225,7 +1402,11 @@ QUIZ 18: `EXPLAIN` shows a query plan without executing it vs `EXPLAIN ANALYZE` 
 - how does postgresql know how many rows and width guesses to execute steps before actually executing.. but really keeps very detailed steps....
 - stats table is how that query plan can make guess about the cost or outcome of the steps without having do the processing of the steps ahead of time.
 
-## Section 25: Advanced Query Timing 41min
+## Section 25: Advanced Query Timing
+
+## 41min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 201. Developing an Intuitive Understanding of Cost
 
@@ -1262,7 +1443,11 @@ QUIZ 19: COST = (0*1)+ (4*4) +(20*4) + (0*.01) + (75*.005) + (214*.005) + (0\*.0
 - even with index in place, postresql is smart enough to tell you performance beneift is not beneficial! get best performance out of your database with `EXPLAIN`
 - YOU DONT WANT TO FORCE POSTGRESQL TO run an index since it evaluates the best option anyway.
 
-## Section 26: Simple Common Table Expressions 10min
+## Section 26: Simple Common Table Expressions
+
+## 10min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 207. Common Table Expression
 
@@ -1305,7 +1490,11 @@ QUIZ 19: COST = (0*1)+ (4*4) +(20*4) + (0*.01) + (75*.005) + (214*.005) + (0\*.0
   4. If recursive statement returns some rows, append them to the results table and run recursion again
   5. If recursive statement returns no rows stop recursion
 
-## Section 28: Simplifying Queries With Views 21min
+## Section 28: Simplifying Queries With Views
+
+## 21min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 215. Most Popular Users
 
@@ -1322,7 +1511,11 @@ QUIZ 19: COST = (0*1)+ (4*4) +(20*4) + (0*.01) + (75*.005) + (214*.005) + (0\*.0
 - `SELECT` \* `FROM` recent_posts
 - `DROP VIEW` recent_posts;
 
-## Section 29: Optimizing Queries with Materialized Views 27min
+## Section 29: Optimizing Queries with Materialized Views
+
+## 27min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 220. Materialized Views
 
@@ -1342,7 +1535,11 @@ QUIZ 19: COST = (0*1)+ (4*4) +(20*4) + (0*.01) + (75*.005) + (214*.005) + (0\*.0
 - `DELETE FROM` posts `WHERE` created_at < 'date';
 - in general you want to use a materialized view when the results of the query change only once a day week month etc. not when you have to rerun the query and change results frequently....
 
-## Section 30: Handling Concurrency and Reversibility with Transactions 22min
+## Section 30: Handling Concurrency and Reversibility with Transactions
+
+## 22min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 225. What are Transactions Used For?
 
@@ -1362,7 +1559,11 @@ QUIZ 19: COST = (0*1)+ (4*4) +(20*4) + (0*.01) + (75*.005) + (214*.005) + (0\*.0
 - require `ROLLBACK`
 - everything work as expected!!!!
 
-## Section 31: Managing Database Design with Schema 51min
+## Section 31: Managing Database Design with Schema
+
+## 51min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 230. A Story on Migrations
 
@@ -1400,7 +1601,11 @@ QUIZ 19: COST = (0*1)+ (4*4) +(20*4) + (0*.01) + (75*.005) + (214*.005) + (0\*.0
 
 - Change the structure of your database! change datatype of your column? hmm. Can use this migration process for zero downtime change? change structue of our database without any downtime or server issues?
 
-## Section 32: Schema vs Data Migrations 4min
+## Section 32: Schema vs Data Migrations
+
+## 4min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 239. Schema vs Data Migrations
 
@@ -1418,7 +1623,11 @@ QUIZ 19: COST = (0*1)+ (4*4) +(20*4) + (0*.01) + (75*.005) + (214*.005) + (0\*.0
 - `ALTER TABLE` <table>
 - `DROP COLUMN` lat numeric lng numeric
 
-## Section 33: Accessing PostgreSQL from API's 28min
+## Section 33: Accessing PostgreSQL from API's
+
+## 28min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 252. Section Goal
 
@@ -1429,7 +1638,11 @@ QUIZ 19: COST = (0*1)+ (4*4) +(20*4) + (0*.01) + (75*.005) + (214*.005) + (0\*.0
 
 - The goal of close, is to close out the pool.
 
-## Section 34: Data Access Pattern - Repositories 32min
+## Section 34: Data Access Pattern - Repositories
+
+## 32min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 259. The Repository Pattern
 
@@ -1444,7 +1657,11 @@ QUIZ 19: COST = (0*1)+ (4*4) +(20*4) + (0*.01) + (75*.005) + (214*.005) + (0\*.0
 
 -
 
-## Section 35: Security Around PostgreSQL 38min
+## Section 35: Security Around PostgreSQL
+
+## 38min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 265. SQL Injection Exploits
 
@@ -1458,7 +1675,11 @@ QUIZ 19: COST = (0*1)+ (4*4) +(20*4) + (0*.01) + (75*.005) + (214*.005) + (0\*.0
 
 -
 
-## Section 36: Fast Parallel Testing 1hr 27min
+## Section 36: Fast Parallel Testing
+
+## 1hr 27min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 272. A Note on Testing
 
@@ -1480,7 +1701,11 @@ QUIZ 19: COST = (0*1)+ (4*4) +(20*4) + (0*.01) + (75*.005) + (214*.005) + (0\*.0
 - add beforeEach() with context.reset()
 - run as many test files in parralel and isolation. one test does not interfere another. and tests run really quick. great setup.
 
-## Section 37: Bonus! 1min
+## Section 37: Bonus!
+
+## 1min
+
+### [Back to Table of Contents](##table-of-contents)
 
 ### 289. Bonus!
 
